@@ -1,10 +1,16 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { 
+  Code2, FileCode, Braces, FileType, Atom, Wind,
+  Server, Database, Flame, Table, Plug, CloudLightning,
+  GitBranch, Code, Figma, Send, Package, Globe,
+  Smartphone, Lightbulb, LayoutList, Binary, Palette, Users
+} from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 interface Skill {
   name: string;
-  level: number;
-  color: string;
+  icon: LucideIcon;
 }
 
 interface SkillCategory {
@@ -16,105 +22,63 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Core Technologies",
     skills: [
-      { name: "HTML5", level: 90, color: "from-orange-500 to-red-500" },
-      { name: "CSS3", level: 85, color: "from-blue-500 to-indigo-500" },
-      { name: "JavaScript", level: 88, color: "from-yellow-400 to-orange-500" },
-      { name: "TypeScript", level: 80, color: "from-blue-600 to-blue-400" },
-      { name: "React.js", level: 85, color: "from-cyan-400 to-blue-500" },
-      { name: "Tailwind CSS", level: 90, color: "from-teal-400 to-cyan-500" },
+      { name: "HTML5", icon: FileCode },
+      { name: "CSS3", icon: Palette },
+      { name: "JavaScript", icon: Braces },
+      { name: "TypeScript", icon: FileType },
+      { name: "React.js", icon: Atom },
+      { name: "Tailwind CSS", icon: Wind },
     ],
   },
   {
     title: "Backend & Database",
     skills: [
-      { name: "Node.js", level: 75, color: "from-green-500 to-emerald-500" },
-      { name: "Express.js", level: 75, color: "from-gray-500 to-gray-400" },
-      { name: "Supabase", level: 80, color: "from-emerald-500 to-green-400" },
-      { name: "PostgreSQL", level: 70, color: "from-blue-700 to-blue-500" },
-      { name: "REST APIs", level: 80, color: "from-purple-500 to-pink-500" },
-      { name: "Firebase", level: 70, color: "from-amber-500 to-orange-500" },
+      { name: "Node.js", icon: Server },
+      { name: "Express.js", icon: Code2 },
+      { name: "Supabase", icon: CloudLightning },
+      { name: "PostgreSQL", icon: Database },
+      { name: "REST APIs", icon: Plug },
+      { name: "Firebase", icon: Flame },
     ],
   },
   {
     title: "Tools & Platforms",
     skills: [
-      { name: "Git & GitHub", level: 85, color: "from-gray-600 to-gray-400" },
-      { name: "VS Code", level: 95, color: "from-blue-500 to-blue-400" },
-      { name: "Figma", level: 75, color: "from-purple-500 to-pink-500" },
-      { name: "Postman", level: 80, color: "from-orange-500 to-red-500" },
-      { name: "npm/yarn", level: 85, color: "from-red-500 to-red-400" },
-      { name: "Vercel", level: 80, color: "from-gray-700 to-gray-500" },
+      { name: "Git & GitHub", icon: GitBranch },
+      { name: "VS Code", icon: Code },
+      { name: "Figma", icon: Figma },
+      { name: "Postman", icon: Send },
+      { name: "npm/yarn", icon: Package },
+      { name: "Vercel", icon: Globe },
     ],
   },
   {
     title: "Concepts & Practices",
     skills: [
-      { name: "Responsive Design", level: 90, color: "from-pink-500 to-rose-500" },
-      { name: "Problem Solving", level: 88, color: "from-violet-500 to-purple-500" },
-      { name: "Data Structures", level: 75, color: "from-cyan-500 to-blue-500" },
-      { name: "Algorithms", level: 72, color: "from-indigo-500 to-violet-500" },
-      { name: "UI/UX Principles", level: 80, color: "from-rose-500 to-pink-500" },
-      { name: "Agile Methodology", level: 70, color: "from-green-500 to-teal-500" },
+      { name: "Responsive Design", icon: Smartphone },
+      { name: "Problem Solving", icon: Lightbulb },
+      { name: "Data Structures", icon: LayoutList },
+      { name: "Algorithms", icon: Binary },
+      { name: "UI/UX Principles", icon: Palette },
+      { name: "Agile Methodology", icon: Users },
     ],
   },
 ];
 
-const SkillCircle = ({ skill, index, inView }: { skill: Skill; index: number; inView: boolean }) => {
-  const radius = 40;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (skill.level / 100) * circumference;
-
+const SkillCard = ({ skill, index, inView }: { skill: Skill; index: number; inView: boolean }) => {
+  const Icon = skill.icon;
+  
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col items-center p-4 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group"
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1"
     >
-      <div className="relative w-24 h-24 mb-3">
-        <svg className="w-full h-full transform -rotate-90">
-          {/* Background Circle */}
-          <circle
-            cx="48"
-            cy="48"
-            r={radius}
-            stroke="currentColor"
-            strokeWidth="6"
-            fill="none"
-            className="text-muted/30"
-          />
-          {/* Progress Circle */}
-          <circle
-            cx="48"
-            cy="48"
-            r={radius}
-            strokeWidth="6"
-            fill="none"
-            strokeLinecap="round"
-            className={`bg-gradient-to-r ${skill.color}`}
-            style={{
-              stroke: "url(#gradient-" + index + ")",
-              strokeDasharray: circumference,
-              strokeDashoffset: inView ? strokeDashoffset : circumference,
-              transition: "stroke-dashoffset 1.5s ease-out",
-              transitionDelay: `${index * 0.1}s`,
-            }}
-          />
-          <defs>
-            <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop offset="100%" stopColor="hsl(var(--secondary))" />
-            </linearGradient>
-          </defs>
-        </svg>
-        {/* Percentage */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg font-bold group-hover:scale-110 transition-transform">
-            {skill.level}%
-          </span>
-        </div>
+      <div className="w-12 h-12 mb-3 flex items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
+        <Icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-300" />
       </div>
-      <span className="text-sm font-medium text-center">{skill.name}</span>
+      <span className="text-sm font-medium text-center text-foreground/90">{skill.name}</span>
     </motion.div>
   );
 };
@@ -162,7 +126,7 @@ export const SkillsSection = () => {
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <SkillCircle
+                  <SkillCard
                     key={skill.name}
                     skill={skill}
                     index={categoryIndex * 6 + skillIndex}
