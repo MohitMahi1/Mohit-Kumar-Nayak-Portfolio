@@ -1,16 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { 
-  Code2, FileCode, Braces, FileType, Atom, Wind,
-  Server, Database, Flame, Table, Plug, CloudLightning,
-  GitBranch, Code, Figma, Send, Package, Globe,
-  Smartphone, Lightbulb, LayoutList, Binary, Palette, Users
-} from "lucide-react";
-import { LucideIcon } from "lucide-react";
 
 interface Skill {
   name: string;
-  icon: LucideIcon;
+  icon: string;
 }
 
 interface SkillCategory {
@@ -20,54 +13,61 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: "Core Technologies",
+    title: "Programming Languages",
     skills: [
-      { name: "HTML5", icon: FileCode },
-      { name: "CSS3", icon: Palette },
-      { name: "JavaScript", icon: Braces },
-      { name: "TypeScript", icon: FileType },
-      { name: "React.js", icon: Atom },
-      { name: "Tailwind CSS", icon: Wind },
+      { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
     ],
   },
   {
-    title: "Backend & Database",
+    title: "Framework",
     skills: [
-      { name: "Node.js", icon: Server },
-      { name: "Express.js", icon: Code2 },
-      { name: "Supabase", icon: CloudLightning },
-      { name: "PostgreSQL", icon: Database },
-      { name: "REST APIs", icon: Plug },
-      { name: "Firebase", icon: Flame },
+      { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+      { name: "Spring Core", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+      { name: "Data JPA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+      { name: "REST API", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+      { name: "Spring Security", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
     ],
   },
   {
-    title: "Tools & Platforms",
+    title: "Data Science & Analytics",
     skills: [
-      { name: "Git & GitHub", icon: GitBranch },
-      { name: "VS Code", icon: Code },
-      { name: "Figma", icon: Figma },
-      { name: "Postman", icon: Send },
-      { name: "npm/yarn", icon: Package },
-      { name: "Vercel", icon: Globe },
+      { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+      { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+      { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" },
+      { name: "Seaborn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
     ],
   },
   {
-    title: "Concepts & Practices",
+    title: "Database",
     skills: [
-      { name: "Responsive Design", icon: Smartphone },
-      { name: "Problem Solving", icon: Lightbulb },
-      { name: "Data Structures", icon: LayoutList },
-      { name: "Algorithms", icon: Binary },
-      { name: "UI/UX Principles", icon: Palette },
-      { name: "Agile Methodology", icon: Users },
+      { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+    ],
+  },
+  {
+    title: "Front-end",
+    skills: [
+      { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      { name: "React Native", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "Git & GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
+      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+      { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+      { name: "Google Colab", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
+      { name: "Kaggle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original.svg" },
+      { name: "MS Office", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" },
     ],
   },
 ];
 
 const SkillCard = ({ skill, index, inView }: { skill: Skill; index: number; inView: boolean }) => {
-  const Icon = skill.icon;
-  
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -75,8 +75,12 @@ const SkillCard = ({ skill, index, inView }: { skill: Skill; index: number; inVi
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1"
     >
-      <div className="w-12 h-12 mb-3 flex items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-        <Icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-300" />
+      <div className="w-14 h-14 mb-3 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-all duration-300">
+        <img 
+          src={skill.icon} 
+          alt={skill.name} 
+          className="w-10 h-10 group-hover:scale-110 transition-transform duration-300"
+        />
       </div>
       <span className="text-sm font-medium text-center text-foreground/90">{skill.name}</span>
     </motion.div>
