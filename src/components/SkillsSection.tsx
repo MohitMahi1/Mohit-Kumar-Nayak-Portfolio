@@ -31,14 +31,12 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1 min-w-[120px]">
-      <div className="w-14 h-14 mb-3 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-all duration-300">
-        <img 
-          src={skill.icon} 
-          alt={skill.name} 
-          className="w-10 h-10 group-hover:scale-110 transition-transform duration-300"
-        />
-      </div>
+    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1 min-w-[120px] hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]">
+      <img 
+        src={skill.icon} 
+        alt={skill.name} 
+        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300"
+      />
       <span className="text-sm font-medium text-center text-foreground/90 whitespace-nowrap">{skill.name}</span>
     </div>
   );
