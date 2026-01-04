@@ -31,13 +31,13 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#1a1a2e] border border-white/10 hover:border-primary/50 transition-all duration-300 group min-w-fit">
+    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1 min-w-[120px] shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)]">
       <img 
         src={skill.icon} 
         alt={skill.name} 
-        className="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
+        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300"
       />
-      <span className="text-sm font-medium text-foreground/90 whitespace-nowrap">{skill.name}</span>
+      <span className="text-sm font-medium text-center text-foreground/90 whitespace-nowrap">{skill.name}</span>
     </div>
   );
 };
