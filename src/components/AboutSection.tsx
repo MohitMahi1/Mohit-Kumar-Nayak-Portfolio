@@ -89,17 +89,22 @@ export const AboutSection = () => {
           >
             <div className="glass-card p-8">
               <p className="text-lg text-foreground leading-relaxed mb-6">
-                Fresh Computer Science graduate with a passion for building innovative web 
-                applications. Strong foundation in modern technologies including{" "}
-                <span className="text-primary font-semibold">React</span>,{" "}
-                <span className="text-secondary font-semibold">TypeScript</span>, and{" "}
-                <span className="text-accent font-semibold">backend development</span>.
+                I am a Computer Science graduate with a background in{" "}
+                <span className="text-primary font-semibold">software and mobile application development</span>{" "}
+                and a growing interest in{" "}
+                <span className="text-secondary font-semibold">data analysis</span> and{" "}
+                <span className="text-accent font-semibold">data science</span>. I completed an internship at 
+                Mobiloitte Technology India Pvt. Ltd. as a React Native Application Developer, where I gained 
+                practical experience in application development, API integration, and working with real-world 
+                data from backend systems.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Eager to contribute to impactful projects and grow as a developer. Quick 
-                learner with excellent problem-solving skills and a drive to master new 
-                technologies. I believe in writing clean, maintainable code and creating 
-                exceptional user experiences.
+                Alongside my development experience, I am building strong foundations in data analytics, 
+                including Python, data cleaning, exploratory data analysis (EDA), and basic data visualization 
+                using Power BI. My development background has helped me understand data structures, databases, 
+                and problem-solving, which I aim to apply in data-driven roles. As a fresher, I am eager to 
+                learn, analyze data, and contribute meaningful insights while continuing to grow in both data 
+                analytics and software development.
               </p>
 
               {/* Highlights Grid */}
