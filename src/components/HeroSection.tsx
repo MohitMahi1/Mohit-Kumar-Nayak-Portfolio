@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { Github, Linkedin, Twitter, Mail, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+  { icon: Github, href: "https://github.com/MohitMahi1", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/mohit-kumar-b37539232/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:mahi500mohit@gmail.com", label: "Email" },
 ];
 
 const FloatingParticle = ({ delay, size, left, top }: { delay: number; size: number; left: string; top: string }) => (
@@ -77,7 +76,7 @@ export const HeroSection = () => {
             <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow">
               <div className="w-full h-full rounded-full bg-surface flex items-center justify-center overflow-hidden">
                 <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary/50 to-secondary/50 flex items-center justify-center text-6xl font-bold text-foreground">
-                  AS
+                  MK
                 </div>
               </div>
             </div>
@@ -96,7 +95,7 @@ export const HeroSection = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
           >
             Hello, I'm{" "}
-            <span className="gradient-text">Alex Smith</span>
+            <span className="gradient-text">Mohit Kumar Nayak</span>
           </motion.h1>
 
           {/* Typing Animation */}
@@ -108,13 +107,13 @@ export const HeroSection = () => {
           >
             <TypeAnimation
               sequence={[
-                "Fresh Graduate",
+                "Full-Stack Developer",
                 2000,
-                "Aspiring Full-Stack Developer",
+                "Data Analytics Enthusiast",
                 2000,
-                "Tech Enthusiast",
+                "Machine Learning Explorer",
                 2000,
-                "Quick Learner",
+                "AI & Deep Learning Learner",
                 2000,
               ]}
               wrapper="span"
@@ -131,8 +130,8 @@ export const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="text-muted-foreground max-w-2xl mx-auto mb-10 text-lg"
           >
-            Passionate about creating beautiful, functional web applications.
-            Ready to bring fresh ideas and modern solutions to your team.
+            Passionate about building web applications and exploring Data Science.
+            Currently diving into Machine Learning, Deep Learning, and Agentic AI.
           </motion.p>
 
           {/* CTA Buttons */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Mail, MapPin, Clock, Check, Copy, Github, Linkedin, Twitter, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Clock, Check, Copy, Github, Linkedin, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,7 +24,7 @@ export const ContactSection = () => {
   });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("alex.smith@example.com");
+    navigator.clipboard.writeText("mahi500mohit@gmail.com");
     setCopied(true);
     toast({
       title: "Email copied!",
@@ -55,9 +55,8 @@ export const ContactSection = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Github, href: "https://github.com/MohitMahi1", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/mohit-kumar-b37539232/", label: "LinkedIn" },
   ];
 
   return (
@@ -178,7 +177,7 @@ export const ContactSection = () => {
                   <div className="flex-1">
                     <p className="text-sm text-muted-foreground mb-1">Email</p>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">alex.smith@example.com</span>
+                      <span className="font-medium">mahi500mohit@gmail.com</span>
                       <button
                         onClick={handleCopyEmail}
                         className="p-1.5 rounded-md hover:bg-primary/10 transition-colors"

@@ -70,12 +70,12 @@ export const AboutSection = () => {
               <div className="relative glass-card p-8 h-full flex flex-col justify-center items-center">
                 <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary p-1 mb-6">
                   <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-6xl font-bold">
-                    AS
+                    MK
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Alex Smith</h3>
+                <h3 className="text-2xl font-bold mb-2">Mohit Kumar Nayak</h3>
                 <p className="text-muted-foreground text-center">
-                  Fresh Graduate | Full-Stack Developer
+                  Developer | Data Analytics & AI Enthusiast
                 </p>
               </div>
             </div>
