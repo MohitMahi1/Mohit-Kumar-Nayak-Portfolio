@@ -7,7 +7,7 @@ const highlights = [
   {
     icon: GraduationCap,
     title: "Recent Graduate",
-    description: "B.Tech in Computer Science (2024)",
+    description: "B.Tech in Computer Science (2025)",
   },
   {
     icon: Lightbulb,
@@ -17,7 +17,7 @@ const highlights = [
   {
     icon: Rocket,
     title: "Project Focused",
-    description: "Built 10+ real-world applications",
+    description: "Built 5+ real-world applications",
   },
   {
     icon: Users,
