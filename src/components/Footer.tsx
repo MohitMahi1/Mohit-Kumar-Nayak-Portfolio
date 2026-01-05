@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowUp, Github, Linkedin, Twitter, Mail, Coffee } from "lucide-react";
+import { Heart, ArrowUp, Github, Linkedin, Mail, Coffee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -11,10 +11,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:alex.smith@example.com", label: "Email" },
+  { icon: Github, href: "https://github.com/MohitMahi1", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/mohit-kumar-b37539232/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:mahi500mohit@gmail.com", label: "Email" },
 ];
 
 export const Footer = () => {
@@ -100,7 +99,7 @@ export const Footer = () => {
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm text-center mb-2">
-            © 2025 Alex Smith. All rights reserved.
+            © 2025 Mohit Kumar Nayak. All rights reserved.
           </p>
           <p className="text-muted-foreground/70 text-sm flex items-center gap-1">
             Made with <Heart size={14} className="text-rose-500" /> using React, TypeScript & Tailwind
