@@ -128,9 +128,12 @@ export const AboutSection = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold shadow-lg shadow-primary/25"
+                asChild
               >
-                <Download className="mr-2" size={18} />
-                Download CV
+                <a href="/Mohit_Kumar_Nayak_Resume.pdf" download="Mohit_Kumar_Nayak_Resume.pdf">
+                  <Download className="mr-2" size={18} />
+                  Download CV
+                </a>
               </Button>
             </div>
           </motion.div>
