@@ -31,13 +31,13 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="relative flex flex-col items-center p-5 rounded-xl bg-surface/40 border border-primary/30 hover:border-primary/70 transition-all duration-300 group hover:-translate-y-2 min-w-[120px] shadow-[0_0_25px_rgba(139,92,246,0.4),0_0_50px_rgba(139,92,246,0.2)] hover:shadow-[0_0_40px_rgba(139,92,246,0.6),0_0_80px_rgba(139,92,246,0.3)] before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-b before:from-primary/10 before:to-transparent before:opacity-50 hover:before:opacity-100 before:transition-opacity">
+    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/50 border border-primary/40 hover:border-primary/80 transition-all duration-300 group hover:-translate-y-1 min-w-[120px] shadow-[0_0_15px_rgba(139,92,246,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(139,92,246,0.7),0_0_50px_rgba(139,92,246,0.3),inset_0_1px_0_rgba(255,255,255,0.15)]">
       <img 
         src={skill.icon} 
         alt={skill.name} 
-        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300 relative z-10 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]"
+        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300"
       />
-      <span className="text-sm font-medium text-center text-foreground whitespace-nowrap relative z-10">{skill.name}</span>
+      <span className="text-sm font-medium text-center text-foreground whitespace-nowrap">{skill.name}</span>
     </div>
   );
 };
