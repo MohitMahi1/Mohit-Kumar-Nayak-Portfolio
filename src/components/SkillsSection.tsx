@@ -31,13 +31,13 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/30 border border-border/20 hover:border-primary/50 hover:bg-surface/50 transition-all duration-300 group hover:-translate-y-1 min-w-[120px] shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)]">
+    <div className="relative flex flex-col items-center p-5 rounded-xl bg-surface/40 border border-primary/30 hover:border-primary/70 transition-all duration-300 group hover:-translate-y-2 min-w-[120px] shadow-[0_0_25px_rgba(139,92,246,0.4),0_0_50px_rgba(139,92,246,0.2)] hover:shadow-[0_0_40px_rgba(139,92,246,0.6),0_0_80px_rgba(139,92,246,0.3)] before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-b before:from-primary/10 before:to-transparent before:opacity-50 hover:before:opacity-100 before:transition-opacity">
       <img 
         src={skill.icon} 
         alt={skill.name} 
-        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300"
+        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300 relative z-10 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]"
       />
-      <span className="text-sm font-medium text-center text-foreground/90 whitespace-nowrap">{skill.name}</span>
+      <span className="text-sm font-medium text-center text-foreground whitespace-nowrap relative z-10">{skill.name}</span>
     </div>
   );
 };
