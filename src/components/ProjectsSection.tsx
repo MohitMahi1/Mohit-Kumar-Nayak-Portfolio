@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ExternalLink, Github, MessageSquare, ShoppingCart, CheckSquare, Cloud, FileCode, BookOpen } from "lucide-react";
+import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Project {
@@ -11,81 +11,124 @@ interface Project {
   icon: any;
   tech: string[];
   category: string;
-  demoUrl: string;
-  githubUrl: string;
+  githubUrl?: string;
   gradient: string;
+  isInternship?: boolean;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "Real-Time Chat App",
-    description: "Full-stack chat application with authentication and real-time messaging capabilities.",
-    icon: MessageSquare,
-    tech: ["React", "Supabase", "Tailwind", "WebSocket"],
-    category: "Full-Stack",
-    demoUrl: "#",
-    githubUrl: "#",
+    title: "Student Management System",
+    description: "Complete student management system with CRUD operations and database integration.",
+    icon: GraduationCap,
+    tech: ["Java", "Spring Boot", "Spring REST", "Spring MVC", "MySQL"],
+    category: "Backend",
+    githubUrl: "https://github.com/MohitMahi1/Student-management-System",
     gradient: "from-violet-500 to-purple-600",
   },
   {
     id: 2,
-    title: "Task Manager Pro",
-    description: "Kanban-style task management with drag-and-drop functionality and dark mode.",
-    icon: CheckSquare,
-    tech: ["React", "TypeScript", "DnD Kit", "LocalStorage"],
-    category: "Frontend",
-    demoUrl: "#",
-    githubUrl: "#",
+    title: "Password Generator",
+    description: "Secure password generator mobile app with customizable options.",
+    icon: KeyRound,
+    tech: ["JavaScript", "React Native"],
+    category: "Mobile",
+    githubUrl: "https://github.com/MohitMahi1/Password-Generator",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
     id: 3,
-    title: "Weather Dashboard",
-    description: "Beautiful weather app with 7-day forecast, charts, and location search.",
-    icon: Cloud,
-    tech: ["React", "OpenWeather API", "Recharts", "Geolocation"],
-    category: "Frontend",
-    demoUrl: "#",
-    githubUrl: "#",
-    gradient: "from-cyan-500 to-teal-500",
+    title: "Doctor Appointment App MEDICOR",
+    description: "Full-stack healthcare app for booking doctor appointments with JWT authentication.",
+    icon: Stethoscope,
+    tech: ["Java", "Spring Boot", "Spring Data JPA", "JWT", "React Native", "Redux Toolkit"],
+    category: "Full-Stack",
+    githubUrl: "https://github.com/MohitMahi1/Doctor-Appointment-App-MEDICOR",
+    gradient: "from-emerald-500 to-green-500",
   },
   {
     id: 4,
-    title: "E-Commerce Store",
-    description: "Modern shopping interface with cart management and checkout flow.",
-    icon: ShoppingCart,
-    tech: ["React", "Context API", "Tailwind", "Fake Store API"],
-    category: "Full-Stack",
-    demoUrl: "#",
-    githubUrl: "#",
+    title: "NewsHub Smart News Feed",
+    description: "Smart news aggregator app with real-time news from multiple sources.",
+    icon: Newspaper,
+    tech: ["JavaScript", "React Native", "NewsAPI"],
+    category: "Mobile",
+    githubUrl: "https://github.com/MohitMahi1/NewsHub-Smart-News-Feed",
     gradient: "from-orange-500 to-red-500",
   },
   {
     id: 5,
-    title: "Portfolio Website",
-    description: "Personal portfolio with modern design, animations, and contact form.",
-    icon: FileCode,
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    category: "Frontend",
-    demoUrl: "#",
-    githubUrl: "#",
+    title: "Email Generator App Backend",
+    description: "AI-powered email generation backend using Gemini API.",
+    icon: Mail,
+    tech: ["Java", "Spring REST", "Postman", "Gemini API"],
+    category: "Backend",
+    githubUrl: "https://github.com/MohitMahi1/Email-Generator-App-Backend",
     gradient: "from-pink-500 to-rose-500",
   },
   {
     id: 6,
-    title: "Note Taking App",
-    description: "Clean note-taking app with markdown support and search functionality.",
-    icon: BookOpen,
-    tech: ["React", "Markdown", "IndexedDB", "Tags"],
+    title: "Movie Review Text Analysis",
+    description: "NLP-based sentiment analysis on movie reviews with visualization.",
+    icon: Film,
+    tech: ["Python", "Pandas", "Numpy", "Matplotlib", "Seaborn", "NLTK", "WordCloud"],
+    category: "Data Analysis",
+    githubUrl: "https://github.com/MohitMahi1/Movie-Review-Text-Analysis",
+    gradient: "from-amber-500 to-yellow-500",
+  },
+  {
+    id: 7,
+    title: "Smart Phone EDA Analysis",
+    description: "Exploratory data analysis on smartphone market data with statistical insights.",
+    icon: Smartphone,
+    tech: ["Python", "Pandas", "Numpy", "Matplotlib", "Seaborn", "EDA"],
+    category: "Data Analysis",
+    githubUrl: "https://github.com/MohitMahi1/Smart-Phone-EDA-Analysis",
+    gradient: "from-cyan-500 to-teal-500",
+  },
+  {
+    id: 8,
+    title: "EdTech Course Analysis Dashboard",
+    description: "Interactive Power BI dashboard for analyzing online course data.",
+    icon: BarChart3,
+    tech: ["Python", "Power BI"],
+    category: "Data Analysis",
+    githubUrl: "https://github.com/MohitMahi1/Ede-Tech-Course-Analysis-Dashboard",
+    gradient: "from-indigo-500 to-blue-500",
+  },
+  {
+    id: 9,
+    title: "Portfolio Website",
+    description: "Personal portfolio with modern design, animations, and contact form.",
+    icon: FileCode,
+    tech: ["React", "Tailwind", "Framer Motion"],
     category: "Frontend",
-    demoUrl: "#",
-    githubUrl: "#",
-    gradient: "from-emerald-500 to-green-500",
+    gradient: "from-fuchsia-500 to-purple-500",
+  },
+  {
+    id: 10,
+    title: "MUIRL Dating App",
+    description: "Internship project - Built splash screen, login, and user detail pages for Meet Up In Real Life app.",
+    icon: Heart,
+    tech: ["React Native", "Frontend Development"],
+    category: "Internship",
+    gradient: "from-rose-500 to-pink-500",
+    isInternship: true,
+  },
+  {
+    id: 11,
+    title: "Investment App (Saudi Arabia)",
+    description: "Internship project - Implemented multilingual support (English/Arabic) using i18next.",
+    icon: TrendingUp,
+    tech: ["React Native", "i18next", "Multilingual"],
+    category: "Internship",
+    gradient: "from-green-500 to-emerald-500",
+    isInternship: true,
   },
 ];
 
-const categories = ["All", "Frontend", "Full-Stack"];
+const categories = ["All", "Full-Stack", "Backend", "Mobile", "Data Analysis", "Frontend", "Internship"];
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -130,7 +173,8 @@ export const ProjectsSection = () => {
               key={category}
               onClick={() => setActiveCategory(category)}
               variant={activeCategory === category ? "default" : "outline"}
-              className={`rounded-full px-6 transition-all duration-300 ${
+              size="sm"
+              className={`rounded-full px-5 transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/25"
                   : "border-border hover:border-primary/50 text-muted-foreground hover:text-foreground"
@@ -158,9 +202,16 @@ export const ProjectsSection = () => {
                 className="group"
               >
                 <div className="glass-card p-6 h-full flex flex-col hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10">
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <project.icon className="w-7 h-7 text-white" />
+                  {/* Icon & Badge */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <project.icon className="w-7 h-7 text-white" />
+                    </div>
+                    {project.isInternship && (
+                      <span className="text-xs px-2 py-1 rounded-full bg-secondary/50 text-secondary-foreground border border-secondary/30">
+                        Internship
+                      </span>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -173,7 +224,7 @@ export const ProjectsSection = () => {
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech) => (
+                    {project.tech.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
                         className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
@@ -181,26 +232,31 @@ export const ProjectsSection = () => {
                         {tech}
                       </span>
                     ))}
+                    {project.tech.length > 4 && (
+                      <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                        +{project.tech.length - 4} more
+                      </span>
+                    )}
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-3">
-                    <Button
-                      size="sm"
-                      className="flex-1 bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90"
+                  {/* GitHub Link */}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full"
                     >
-                      <ExternalLink size={16} className="mr-2" />
-                      Live Demo
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 border-border hover:border-primary/50"
-                    >
-                      <Github size={16} className="mr-2" />
-                      GitHub
-                    </Button>
-                  </div>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full border-border hover:border-primary/50 hover:bg-primary/10"
+                      >
+                        <Github size={16} className="mr-2" />
+                        View on GitHub
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
