@@ -1,50 +1,40 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { GraduationCap, Award, Trophy, Code, BookOpen } from "lucide-react";
+import { GraduationCap, School, BookOpen } from "lucide-react";
 
-interface TimelineItem {
-  date: string;
+interface EducationItem {
+  year: string;
   title: string;
+  institution: string;
   description: string;
+  score: string;
   icon: any;
-  type: "education" | "achievement" | "certification";
 }
 
-const timelineItems: TimelineItem[] = [
+const educationItems: EducationItem[] = [
   {
-    date: "2024",
-    title: "Bachelor of Technology (Computer Science)",
-    description: "Graduated from XYZ University with CGPA 8.5/10. Relevant coursework: Data Structures, Algorithms, DBMS, Web Technologies.",
+    year: "2025",
+    title: "Bachelor of Technology in Computer Science & Engineering",
+    institution: "Gandhi Institute For Technology, Bhubaneswar",
+    description: "Recently completed B.Tech degree with focus on computer science and engineering fundamentals.",
+    score: "CGPA: 7.61",
     icon: GraduationCap,
-    type: "education",
   },
   {
-    date: "2024",
-    title: "100 Days of Code Challenge",
-    description: "Built 100 projects in 100 days, mastering React, TypeScript, and modern web development practices.",
-    icon: Code,
-    type: "achievement",
+    year: "2021",
+    title: "12th / Intermediate in Science Stream (PCM IT)",
+    institution: "Govt. Higher Secondary School, Chatrapur",
+    description: "Completed higher secondary education with Physics, Chemistry, Mathematics and IT.",
+    score: "Percentage: 74%",
+    icon: School,
   },
   {
-    date: "2023",
-    title: "College Hackathon Winner",
-    description: "1st Place - Built a real-time collaboration tool in 24 hours with a team of 4 developers.",
-    icon: Trophy,
-    type: "achievement",
-  },
-  {
-    date: "2023",
-    title: "Web Development Bootcamp",
-    description: "Completed comprehensive full-stack course and built 15+ projects from scratch.",
+    year: "2019",
+    title: "10th / Matriculation",
+    institution: "Saraswati Sishu Vidya Mandir, Chatrapur",
+    description: "Completed secondary education with strong academic foundation.",
+    score: "Percentage: 74.83%",
     icon: BookOpen,
-    type: "certification",
-  },
-  {
-    date: "2023",
-    title: "freeCodeCamp Certifications",
-    description: "Earned Responsive Web Design, JavaScript Algorithms, and Frontend Libraries certifications.",
-    icon: Award,
-    type: "certification",
   },
 ];
 
@@ -67,10 +57,10 @@ export const EducationSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Education & <span className="gradient-text">Achievements</span>
+            My <span className="gradient-text">Education</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            My academic journey and milestones that shaped my development career
+            My academic journey that built the foundation for my development career
           </p>
         </motion.div>
 
@@ -79,12 +69,12 @@ export const EducationSection = () => {
           {/* Timeline Line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent transform md:-translate-x-1/2" />
 
-          {timelineItems.map((item, index) => (
+          {educationItems.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
               className={`relative flex items-start mb-12 ${
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
               }`}
@@ -97,70 +87,38 @@ export const EducationSection = () => {
                 index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
               }`}>
                 <div className="glass-card p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
-                  {/* Date Badge */}
+                  {/* Year Badge */}
                   <span className="inline-block px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-4">
-                    {item.date}
+                    {item.year}
                   </span>
 
                   {/* Icon & Title */}
                   <div className="flex items-start gap-4 mb-3">
-                    <div className={`p-2 rounded-lg ${
-                      item.type === "education" 
-                        ? "bg-primary/20 text-primary" 
-                        : item.type === "achievement"
-                        ? "bg-accent/20 text-accent"
-                        : "bg-secondary/20 text-secondary"
-                    }`}>
+                    <div className="p-2 rounded-lg bg-primary/20 text-primary">
                       <item.icon size={20} />
                     </div>
                     <h3 className="text-lg font-bold flex-1">{item.title}</h3>
                   </div>
 
+                  {/* Institution */}
+                  <p className="text-primary/80 font-medium text-sm mb-2">
+                    {item.institution}
+                  </p>
+
                   {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                     {item.description}
                   </p>
+
+                  {/* Score */}
+                  <span className="inline-block px-3 py-1 text-xs font-semibold bg-secondary/20 text-secondary rounded-full">
+                    {item.score}
+                  </span>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Current Learning */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 max-w-2xl mx-auto"
-        >
-          <div className="glass-card p-8 text-center">
-            <h3 className="text-xl font-bold mb-6">
-              What I'm Currently <span className="gradient-text">Learning</span>
-            </h3>
-            <div className="space-y-4">
-              {[
-                { name: "Advanced React Patterns", progress: 60 },
-                { name: "System Design Fundamentals", progress: 40 },
-                { name: "Next.js & Server Components", progress: 50 },
-              ].map((item) => (
-                <div key={item.name}>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-muted-foreground">{item.name}</span>
-                    <span className="text-primary font-medium">{item.progress}%</span>
-                  </div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={inView ? { width: `${item.progress}%` } : {}}
-                      transition={{ duration: 1, delay: 1 }}
-                      className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
