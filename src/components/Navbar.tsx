@@ -66,10 +66,10 @@ export const Navbar = () => {
                 e.preventDefault();
                 handleNavClick("#home");
               }}
-              className="text-2xl font-bold gradient-text"
+              className="text-xl font-bold gradient-text"
               whileHover={{ scale: 1.05 }}
             >
-              DevPortfolio
+              Mohit Kumar Nayak
             </motion.a>
 
             {/* Desktop Navigation */}
