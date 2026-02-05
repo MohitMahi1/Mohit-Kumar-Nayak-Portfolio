@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { SectionDivider } from "@/components/SectionDivider";
 
 interface Skill {
   name: string;
@@ -95,6 +96,10 @@ export const SkillsSection = () => {
             <SkillCard key={`second-${index}`} skill={skill} />
           ))}
         </motion.div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <SectionDivider />
       </div>
     </section>
   );

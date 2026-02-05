@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, Lightbulb, Rocket, Users, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionDivider } from "@/components/SectionDivider";
 import profilePhoto from "@/assets/profile-photo.png";
 
 const highlights = [
@@ -152,6 +153,8 @@ export const AboutSection = () => {
             </div>
           </motion.div>
         </div>
+
+        <SectionDivider />
       </div>
     </section>
   );

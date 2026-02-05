@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, Calendar, MapPin, Code, Smartphone, Globe, Database } from "lucide-react";
+import { SectionDivider } from "@/components/SectionDivider";
 
 const experiences = [
   {
@@ -232,6 +233,8 @@ export const ExperienceSection = () => {
             </div>
           </motion.div>
         </div>
+
+        <SectionDivider />
       </div>
     </section>
   );
