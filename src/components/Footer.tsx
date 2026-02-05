@@ -42,10 +42,10 @@ export const Footer = () => {
               e.preventDefault();
               handleNavClick("#home");
             }}
-            className="text-3xl font-bold gradient-text mb-8"
+            className="text-2xl font-bold gradient-text mb-8"
             whileHover={{ scale: 1.05 }}
           >
-            DevPortfolio
+            Mohit Kumar Nayak
           </motion.a>
 
           {/* Quick Links */}
