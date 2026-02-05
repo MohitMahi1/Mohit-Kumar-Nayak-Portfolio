@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profilePhoto from "@/assets/profile-photo.png";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/MohitMahi1", label: "GitHub" },
@@ -73,18 +74,19 @@ export const HeroSection = () => {
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
             className="relative mb-8"
           >
-            <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow">
-              <div className="w-full h-full rounded-full bg-surface flex items-center justify-center overflow-hidden">
-                <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary/50 to-secondary/50 flex items-center justify-center text-6xl font-bold text-foreground">
-                  MK
-                </div>
+            {/* Outer glow ring */}
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-30 blur-2xl animate-pulse" />
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary to-secondary opacity-50 blur-xl" />
+            
+            <div className="relative w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow shadow-2xl shadow-primary/50">
+              <div className="w-full h-full rounded-full bg-surface overflow-hidden">
+                <img 
+                  src={profilePhoto} 
+                  alt="Mohit Kumar Nayak" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-            <motion.div
-              className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary to-secondary opacity-0 blur-xl"
-              whileHover={{ opacity: 0.5 }}
-              transition={{ duration: 0.3 }}
-            />
           </motion.div>
 
           {/* Greeting */}
