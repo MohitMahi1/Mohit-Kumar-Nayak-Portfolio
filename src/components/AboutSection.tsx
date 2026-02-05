@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, Lightbulb, Rocket, Users, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profilePhoto from "@/assets/profile-photo.png";
 
 const highlights = [
   {
@@ -67,10 +68,18 @@ export const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-3xl transform -rotate-3" />
               
               {/* Main Card */}
-              <div className="relative glass-card p-8 h-full flex flex-col justify-center items-center">
-                <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary p-1 mb-6">
-                  <div className="w-full h-full rounded-full bg-surface flex items-center justify-center text-6xl font-bold">
-                    MK
+              <div className="relative glass-card p-8 h-full flex flex-col justify-center items-center glow-card">
+                {/* Profile Photo Glow */}
+                <div className="relative mb-6">
+                  <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-primary to-secondary opacity-40 blur-xl" />
+                  <div className="relative w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary p-1 shadow-2xl shadow-primary/40">
+                    <div className="w-full h-full rounded-full overflow-hidden">
+                      <img 
+                        src={profilePhoto} 
+                        alt="Mohit Kumar Nayak" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Mohit Kumar Nayak</h3>
