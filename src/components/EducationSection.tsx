@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, School, BookOpen } from "lucide-react";
+import { SectionDivider } from "@/components/SectionDivider";
 
 interface EducationItem {
   year: string;
@@ -119,6 +120,8 @@ export const EducationSection = () => {
             </motion.div>
           ))}
         </div>
+
+        <SectionDivider />
       </div>
     </section>
   );

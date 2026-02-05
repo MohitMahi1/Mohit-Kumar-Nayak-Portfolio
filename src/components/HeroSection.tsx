@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionDivider } from "@/components/SectionDivider";
 import profilePhoto from "@/assets/profile-photo.png";
 
 const socialLinks = [

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp } from "lucide-react";
+import { SectionDivider } from "@/components/SectionDivider";
 import { Button } from "@/components/ui/button";
 
 interface Project {
@@ -262,6 +263,8 @@ export const ProjectsSection = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        <SectionDivider />
       </div>
     </section>
   );
