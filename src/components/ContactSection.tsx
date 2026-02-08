@@ -37,21 +37,43 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact: Message from ${formData.name}`,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Message sent!",
-      description: "I'll get back to you within 24 hours.",
-    });
+      const result = await response.json();
 
-    // Reset form
-    setTimeout(() => {
-      setFormData({ name: "", email: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({
+          title: "Thank you!",
+          description: "Your message has been sent successfully ✓",
+        });
+        setTimeout(() => {
+          setFormData({ name: "", email: "", message: "" });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error(result.message || "Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or email me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -240,12 +262,12 @@ export const ContactSection = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -3, scale: 1.05 }}
+                    whileHover={{ y: -3, scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center gap-2 p-3 rounded-xl bg-surface/50 border border-border/30 hover:border-primary/50 hover:bg-primary/10 transition-all"
+                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface/50 border border-border/30 hover:border-primary hover:bg-primary/15 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.8),0_0_40px_rgba(139,92,246,0.4)] hover:animate-pulse"
                   >
-                    <social.icon size={20} />
-                    <span className="text-sm font-medium">{social.label}</span>
+                    <social.icon size={24} />
+                    <span className="text-base font-semibold">{social.label}</span>
                   </motion.a>
                 ))}
               </div>
