@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowUp, Github, Linkedin, Mail, Coffee } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -82,27 +82,12 @@ export const Footer = () => {
             ))}
           </div>
 
-          {/* Buy Me a Coffee */}
-          <motion.a
-            href="https://buymeacoffee.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 px-6 py-3 mb-8 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-all"
-          >
-            <Coffee size={18} />
-            <span className="text-sm font-medium">Buy me a coffee</span>
-          </motion.a>
-
           {/* Divider */}
           <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-border to-transparent mb-8" />
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm text-center mb-2">
             © 2025 Mohit Kumar Nayak. All rights reserved.
-          </p>
-          <p className="text-muted-foreground/70 text-sm flex items-center gap-1">
-            Made with <Heart size={14} className="text-rose-500" /> using React, TypeScript & Tailwind
           </p>
 
           {/* Back to Top */}
