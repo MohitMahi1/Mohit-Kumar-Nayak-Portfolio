@@ -78,7 +78,7 @@ export const AboutSection = () => {
                       <img 
                         src={profilePhoto} 
                         alt="Mohit Kumar Nayak" 
-                        className="w-full h-full object-cover object-bottom"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                   </div>
