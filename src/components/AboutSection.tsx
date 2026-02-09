@@ -63,18 +63,18 @@ export const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative aspect-square max-w-md mx-auto">
+            <div className="relative max-w-lg mx-auto">
               {/* Decorative Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl transform rotate-6" />
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-3xl transform -rotate-3" />
               
               {/* Main Card */}
-              <div className="relative glass-card p-8 h-full flex flex-col justify-center items-center glow-card">
-                {/* Profile Photo Glow */}
+              <div className="relative glass-card p-8 flex flex-col justify-center items-center glow-card">
+                {/* Profile Photo */}
                 <div className="relative mb-6">
-                  <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-primary to-secondary opacity-40 blur-xl" />
-                  <div className="relative w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary p-1 shadow-2xl shadow-primary/40">
-                    <div className="w-full h-full rounded-full overflow-hidden">
+                  <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary to-secondary opacity-40 blur-xl" />
+                  <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-primary to-secondary p-1 shadow-2xl shadow-primary/40">
+                    <div className="w-full h-full rounded-2xl overflow-hidden">
                       <img 
                         src={profilePhoto} 
                         alt="Mohit Kumar Nayak" 
