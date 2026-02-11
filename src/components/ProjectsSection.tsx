@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp } from "lucide-react";
+import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp, Eye, X } from "lucide-react";
 import { SectionDivider } from "@/components/SectionDivider";
 import { Button } from "@/components/ui/button";
+import edtechDashboard from "@/assets/edtech-dashboard.png";
 
 interface Project {
   id: number;
@@ -15,6 +16,7 @@ interface Project {
   githubUrl?: string;
   gradient: string;
   isInternship?: boolean;
+  dashboardImage?: string;
 }
 
 const projects: Project[] = [
@@ -94,9 +96,10 @@ const projects: Project[] = [
     description: "Interactive Power BI dashboard for analyzing online course data.",
     icon: BarChart3,
     tech: ["Python", "Power BI"],
-    category: "Data Analysis",
+    category: "Power BI",
     githubUrl: "https://github.com/MohitMahi1/Ede-Tech-Course-Analysis-Dashboard",
     gradient: "from-indigo-500 to-blue-500",
+    dashboardImage: edtechDashboard,
   },
   {
     id: 9,
@@ -129,10 +132,11 @@ const projects: Project[] = [
   },
 ];
 
-const categories = ["All", "Full-Stack", "Backend", "Mobile", "Data Analysis", "Frontend", "Internship"];
+const categories = ["All", "Full-Stack", "Backend", "Mobile", "Data Analysis", "Power BI", "Frontend", "Internship"];
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -258,6 +262,19 @@ export const ProjectsSection = () => {
                       </Button>
                     </a>
                   )}
+
+                  {/* Dashboard Preview Button */}
+                  {project.dashboardImage && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full mt-2 border-[#df78e3]/50 hover:border-[#df78e3] hover:bg-[#df78e3]/10 text-[#df78e3]"
+                      onClick={() => setDashboardPreview(project.dashboardImage!)}
+                    >
+                      <Eye size={16} className="mr-2" />
+                      See Dashboard
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -266,6 +283,41 @@ export const ProjectsSection = () => {
 
         <SectionDivider />
       </div>
+
+      {/* Dashboard Preview Modal */}
+      <AnimatePresence>
+        {dashboardPreview && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            onClick={() => setDashboardPreview(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Button
+                size="icon"
+                variant="ghost"
+                className="absolute -top-12 right-0 text-white hover:bg-white/20"
+                onClick={() => setDashboardPreview(null)}
+              >
+                <X size={24} />
+              </Button>
+              <img
+                src={dashboardPreview}
+                alt="Dashboard Preview"
+                className="w-full rounded-xl shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
