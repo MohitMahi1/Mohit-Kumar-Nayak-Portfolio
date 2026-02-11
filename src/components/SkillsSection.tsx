@@ -83,6 +83,7 @@ export const SkillsSection = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex gap-6 animate-marquee"
+          style={{ width: 'max-content' }}
         >
           {/* First set */}
           {skills.map((skill, index) => (
