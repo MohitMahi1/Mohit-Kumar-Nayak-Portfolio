@@ -32,13 +32,14 @@ const skills: Skill[] = [
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   return (
-    <div className="flex flex-col items-center p-5 rounded-xl bg-surface/50 border border-primary/40 hover:border-primary/80 transition-all duration-300 group hover:-translate-y-1 min-w-[120px] shadow-[0_0_15px_rgba(139,92,246,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(139,92,246,0.7),0_0_50px_rgba(139,92,246,0.3),inset_0_1px_0_rgba(255,255,255,0.15)]">
+    <div className="flex flex-col items-center justify-center p-10 rounded-2xl bg-surface/50 border border-[#df78e3]/30 hover:border-[#df78e3]/80 transition-all duration-300 group hover:-translate-y-3 min-w-[180px] min-h-[180px] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(223,120,227,0.08)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <img 
         src={skill.icon} 
         alt={skill.name} 
-        className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform duration-300"
+        className="w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300 relative z-10"
       />
-      <span className="text-sm font-medium text-center text-foreground whitespace-nowrap">{skill.name}</span>
+      <span className="text-base font-medium text-center text-foreground whitespace-nowrap relative z-10">{skill.name}</span>
     </div>
   );
 };
@@ -52,11 +53,7 @@ export const SkillsSection = () => {
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-surface/30">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.03)_0%,transparent_50%)]" />
-      
-      {/* Glow Effects */}
-      <div className="absolute top-1/2 -left-48 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
-      <div className="absolute top-1/2 -right-48 w-96 h-96 bg-secondary/10 rounded-full blur-[150px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(223,120,227,0.03)_0%,transparent_50%)]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
         <motion.div
@@ -75,7 +72,7 @@ export const SkillsSection = () => {
       </div>
 
       {/* Marquee Container */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-x-hidden overflow-y-visible py-4">
         {/* Gradient Overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
