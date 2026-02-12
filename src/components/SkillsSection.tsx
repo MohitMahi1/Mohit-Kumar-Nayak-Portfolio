@@ -96,6 +96,11 @@ export const SkillsSection = () => {
         </motion.div>
       </div>
 
+      {/* Hover hint */}
+      <p className="text-center text-muted-foreground/50 text-xs mt-4 italic">
+        Hover over a skill to pause • Touch to interact
+      </p>
+
       <div className="container mx-auto px-6 relative z-10">
         <SectionDivider />
       </div>
