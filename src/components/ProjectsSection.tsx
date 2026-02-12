@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp, Eye, X } from "lucide-react";
+import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp, Eye, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import { SectionDivider } from "@/components/SectionDivider";
 import { Button } from "@/components/ui/button";
 import edtechDashboard from "@/assets/edtech-dashboard.png";
@@ -137,6 +137,7 @@ const categories = ["All", "Full-Stack", "Backend", "Mobile", "Data Analysis", "
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -291,29 +292,63 @@ export const ProjectsSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-            onClick={() => setDashboardPreview(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
+            onClick={() => { setDashboardPreview(null); setZoomLevel(1); }}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-5xl w-full"
+              className="relative max-w-4xl w-full max-h-[85vh] flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <Button
-                size="icon"
-                variant="ghost"
-                className="absolute -top-12 right-0 text-white hover:bg-white/20"
-                onClick={() => setDashboardPreview(null)}
-              >
-                <X size={24} />
-              </Button>
-              <img
-                src={dashboardPreview}
-                alt="Dashboard Preview"
-                className="w-full rounded-xl shadow-2xl"
-              />
+              {/* Top bar with controls */}
+              <div className="flex items-center justify-between w-full mb-3">
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-9 w-9 border-white/20 bg-white/10 text-white hover:bg-white/20"
+                    onClick={() => setZoomLevel((z) => Math.max(0.5, z - 0.25))}
+                  >
+                    <ZoomOut size={18} />
+                  </Button>
+                  <span className="text-white/70 text-sm min-w-[50px] text-center">{Math.round(zoomLevel * 100)}%</span>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-9 w-9 border-white/20 bg-white/10 text-white hover:bg-white/20"
+                    onClick={() => setZoomLevel((z) => Math.min(3, z + 0.25))}
+                  >
+                    <ZoomIn size={18} />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-9 w-9 border-white/20 bg-white/10 text-white hover:bg-white/20"
+                    onClick={() => setZoomLevel(1)}
+                  >
+                    <RotateCcw size={16} />
+                  </Button>
+                </div>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-9 w-9 border-white/20 bg-red-500/80 text-white hover:bg-red-500"
+                  onClick={() => { setDashboardPreview(null); setZoomLevel(1); }}
+                >
+                  <X size={18} />
+                </Button>
+              </div>
+              {/* Image container */}
+              <div className="overflow-auto max-h-[78vh] w-full rounded-xl border border-white/10">
+                <img
+                  src={dashboardPreview}
+                  alt="Dashboard Preview"
+                  className="w-full rounded-xl shadow-2xl transition-transform duration-300 origin-top-left"
+                  style={{ transform: `scale(${zoomLevel})` }}
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}
