@@ -42,7 +42,7 @@ export const ContactSection = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          access_key: "a94738ae-4bec-45c2-ae5a-95810e707ed3",
           name: formData.name,
           email: formData.email,
           message: formData.message,
