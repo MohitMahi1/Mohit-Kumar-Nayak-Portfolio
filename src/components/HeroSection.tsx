@@ -42,7 +42,7 @@ export const HeroSection = () => {
     >
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 animate-gradient" />
-      
+
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
 
@@ -78,15 +78,19 @@ export const HeroSection = () => {
             {/* Outer glow ring */}
             <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-30 blur-2xl animate-pulse" />
             <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary to-secondary opacity-50 blur-xl" />
-            
+
             <div className="relative w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow shadow-2xl shadow-primary/50">
-              <div className="w-full h-full rounded-full bg-surface overflow-hidden">
-                <img 
-                  src={profilePhoto} 
-                  alt="Mohit Kumar Nayak" 
-                  className="w-full h-full object-cover"
+
+              <div className="w-full h-full rounded-full bg-surface overflow-hidden flex items-center justify-center">
+
+                <img
+                  src={profilePhoto}
+                  alt="Mohit Kumar Nayak"
+                  className="w-full h-full object-cover object-[center_top]"
                 />
+
               </div>
+
             </div>
           </motion.div>
 
