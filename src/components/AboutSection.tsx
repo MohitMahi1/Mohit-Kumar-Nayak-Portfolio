@@ -158,8 +158,8 @@ export const AboutSection = () => {
                 asChild
               >
                 <a 
-                  href="/Mohit_Kumar_Nayak_Resume_1.pdf" 
-                  download="Mohit_Kumar_Nayak_Resume_1.pdf"
+                  href="/Mohit_Kumar_Nayak_Resume_ATS.pdf" 
+                  download="Mohit_Kumar_Nayak_Resume_ATS.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

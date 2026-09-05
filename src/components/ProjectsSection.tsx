@@ -571,11 +571,11 @@ export const ProjectsSection = () => {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={`${project.id}-${animKey.current}`}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+                exit={{ opacity: 0, y: 30, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group"
               >
