@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, School, BookOpen } from "lucide-react";
 import { SectionDivider } from "@/components/SectionDivider";
@@ -41,29 +42,35 @@ const educationItems: EducationItem[] = [
 
 export const EducationSection = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   return (
-    <section id="education" className="py-24 relative overflow-hidden bg-surface/30">
+    <section id="education" className="py-24 relative overflow-hidden bg-surface/30 light:bg-white">
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.05)_0%,transparent_50%)]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             My <span className="gradient-text">Education</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             My academic journey that built the foundation for my development career
           </p>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Timeline */}
         <div className="relative max-w-3xl mx-auto">
@@ -71,10 +78,12 @@ export const EducationSection = () => {
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent transform md:-translate-x-1/2" />
 
           {educationItems.map((item, index) => (
+            <AnimatePresence key={item.year} mode="wait">
             <motion.div
-              key={index}
+              key={`${animKey.current}-${index}`}
               initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              exit={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className={`relative flex items-start mb-12 ${
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
@@ -118,6 +127,7 @@ export const EducationSection = () => {
                 </div>
               </div>
             </motion.div>
+            </AnimatePresence>
           ))}
         </div>
 

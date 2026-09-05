@@ -358,7 +358,7 @@
 // };
 
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Github, GraduationCap, KeyRound, Stethoscope, Newspaper, Mail, Film, Smartphone, BarChart3, FileCode, Heart, TrendingUp, Eye, X, ZoomIn, ZoomOut, RotateCcw, ExternalLink, Aperture } from "lucide-react";
@@ -502,9 +502,11 @@ export const ProjectsSection = () => {
   const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   const filteredProjects = projects.filter(
     (project) => activeCategory === "All" || project.category === activeCategory
@@ -516,24 +518,30 @@ export const ProjectsSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.05)_0%,transparent_50%)]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Things I've <span className="gradient-text">Built</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A collection of projects that showcase my skills and passion for development
-          </p>
-        </motion.div>
+          </p>           </motion.div>
+         </AnimatePresence>
 
         {/* Category Filters */}
+        <AnimatePresence mode="wait">
         <motion.div
+          key={`filters-${animKey.current}`}
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
@@ -545,14 +553,15 @@ export const ProjectsSection = () => {
               size="sm"
               className={`rounded-full px-5 transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/25"
+                  ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg shadow-primary/25 light:shadow-primary/15"
                   : "border-border hover:border-primary/50 text-muted-foreground hover:text-foreground"
               }`}
             >
               {category}
             </Button>
           ))}
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Projects Grid */}
         <motion.div
@@ -638,7 +647,7 @@ export const ProjectsSection = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="w-full border-emerald-500/50 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400"
+                          className="w-full border-emerald-500/50 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-400 light:text-emerald-600"
                         >
                           <ExternalLink size={16} className="mr-2" />
                           Live Demo

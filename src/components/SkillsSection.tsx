@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { SectionDivider } from "@/components/SectionDivider";
 
@@ -46,41 +47,50 @@ const SkillCard = ({ skill }: { skill: Skill }) => {
 
 export const SkillsSection = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-surface/30">
+    <section id="skills" className="py-24 relative overflow-hidden bg-surface/30 light:bg-white">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(223,120,227,0.03)_0%,transparent_50%)]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Technical <span className="gradient-text">Arsenal</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             The technologies and tools I've mastered on my journey to becoming a full-stack developer
           </p>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Marquee Container */}
       <div className="relative w-full overflow-x-hidden overflow-y-visible py-4">
         {/* Gradient Overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background light:from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background light:from-white to-transparent z-10 pointer-events-none" />
         
         {/* Scrolling Content */}
+        <AnimatePresence mode="wait">
         <motion.div
+          key={`marquee-${animKey.current}`}
           initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex gap-6 animate-marquee"
           style={{ width: 'max-content' }}
@@ -94,6 +104,7 @@ export const SkillsSection = () => {
             <SkillCard key={`second-${index}`} skill={skill} />
           ))}
         </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Hover hint */}

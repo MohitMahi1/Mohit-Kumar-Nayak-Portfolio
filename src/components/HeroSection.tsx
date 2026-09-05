@@ -44,7 +44,7 @@ export const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 animate-gradient" />
 
       {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] light:bg-[linear-gradient(rgba(139,92,246,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.06)_1px,transparent_1px)]" />
 
       {/* Floating Particles */}
       <FloatingParticle delay={0} size={6} left="10%" top="20%" />
@@ -79,7 +79,7 @@ export const HeroSection = () => {
             <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-30 blur-2xl animate-pulse" />
             <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-primary to-secondary opacity-50 blur-xl" />
 
-            <div className="relative w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow shadow-2xl shadow-primary/50">
+            <div className="relative w-44 h-44 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-glow shadow-2xl shadow-primary/50 light:shadow-primary/25">
 
               <div className="w-full h-full rounded-full bg-surface overflow-hidden flex items-center justify-center">
 
@@ -151,7 +151,7 @@ export const HeroSection = () => {
             <Button
               onClick={handleScrollToProjects}
               size="lg"
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground px-8 py-6 text-lg font-semibold shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-primary/40 hover:-translate-y-1"
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground px-8 py-6 text-lg font-semibold shadow-lg shadow-primary/25 light:shadow-primary/15 transition-all duration-300 hover:shadow-primary/40 light:hover:shadow-primary/25 hover:-translate-y-1"
             >
               View My Projects
             </Button>

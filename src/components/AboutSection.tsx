@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, Lightbulb, Rocket, Users, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,9 +31,11 @@ const highlights = [
 
 export const AboutSection = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
@@ -41,25 +44,32 @@ export const AboutSection = () => {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Get to know me better and discover what drives my passion for development
           </p>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image/Illustration */}
+          <AnimatePresence mode="wait">
           <motion.div
+            key={`left-${animKey.current}`}
             initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
@@ -90,11 +100,15 @@ export const AboutSection = () => {
               </div>
             </div>
           </motion.div>
+          </AnimatePresence>
 
           {/* Right - Content */}
+          <AnimatePresence mode="wait">
           <motion.div
+            key={`right-${animKey.current}`}
             initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            exit={{ opacity: 0, x: 50 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="glass-card p-8">
@@ -120,10 +134,12 @@ export const AboutSection = () => {
               {/* Highlights Grid */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {highlights.map((item, index) => (
+                  <AnimatePresence key={item.title} mode="wait">
                   <motion.div
-                    key={item.title}
+                    key={`${animKey.current}-${item.title}`}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     className="p-4 rounded-xl bg-surface/50 border border-border/30 hover:border-primary/50 transition-all duration-300 group"
                   >
@@ -131,13 +147,14 @@ export const AboutSection = () => {
                     <h4 className="font-semibold text-sm mb-1">{item.title}</h4>
                     <p className="text-xs text-muted-foreground">{item.description}</p>
                   </motion.div>
+                  </AnimatePresence>
                 ))}
               </div>
 
               {/* Download CV Button */}
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold shadow-lg shadow-primary/25"
+                className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold shadow-lg shadow-primary/25 light:shadow-primary/15"
                 asChild
               >
                 <a 
@@ -152,6 +169,7 @@ export const AboutSection = () => {
               </Button>
             </div>
           </motion.div>
+          </AnimatePresence>
         </div>
 
         <SectionDivider />

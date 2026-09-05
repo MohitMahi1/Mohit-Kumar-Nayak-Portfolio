@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, MapPin, Clock, Check, Copy, Github, Linkedin, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,11 @@ import { useToast } from "@/hooks/use-toast";
 
 export const ContactSection = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,25 +90,32 @@ export const ContactSection = () => {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Let's Build <span className="gradient-text">Something Together</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how I can help bring your ideas to life
           </p>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Form */}
+          <AnimatePresence mode="wait">
           <motion.div
+            key={`form-${animKey.current}`}
             initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="glass-card p-8">
@@ -178,11 +187,15 @@ export const ContactSection = () => {
               )}
             </div>
           </motion.div>
+          </AnimatePresence>
 
           {/* Contact Info */}
+          <AnimatePresence mode="wait">
           <motion.div
+            key={`info-${animKey.current}`}
             initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            exit={{ opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col gap-6"
           >
@@ -264,7 +277,7 @@ export const ContactSection = () => {
                     rel="noopener noreferrer"
                     whileHover={{ y: -3, scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface/50 border border-border/30 hover:border-primary hover:bg-primary/15 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.8),0_0_40px_rgba(139,92,246,0.4)] hover:animate-pulse"
+                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl bg-surface/50 border border-border/30 hover:border-primary hover:bg-primary/15 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.8),0_0_40px_rgba(139,92,246,0.4)] light:hover:shadow-[0_8px_24px_-8px_rgba(139,92,246,0.35)] hover:animate-pulse light:hover:animate-none"
                   >
                     <social.icon size={24} />
                     <span className="text-base font-semibold">{social.label}</span>
@@ -273,6 +286,7 @@ export const ContactSection = () => {
               </div>
             </div>
           </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

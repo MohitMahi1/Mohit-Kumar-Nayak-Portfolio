@@ -68,7 +68,8 @@
   }
 
   .light {
-    --background: 0 0% 98%;
+    /* Soft lavender-tinted paper instead of stark white */
+    --background: 240 45% 98.5%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -77,29 +78,30 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 263 70% 55%;
+    /* Deeper brand colors for stronger contrast on light surfaces */
+    --primary: 263 70% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 55%;
+    --secondary: 217 91% 48%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 14% 92%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 240 25% 93%;
+    --muted-foreground: 220 9% 36%;
 
-    --accent: 168 76% 35%;
+    --accent: 168 76% 32%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 85%;
-    --input: 220 13% 85%;
-    --ring: 263 70% 55%;
+    --border: 240 14% 84%;
+    --input: 240 14% 84%;
+    --ring: 263 70% 48%;
 
-    --surface: 220 14% 96%;
-    --surface-light: 220 14% 92%;
-    --glow-purple: 263 70% 55%;
-    --glow-blue: 217 91% 55%;
+    --surface: 240 30% 96%;
+    --surface-light: 240 28% 93%;
+    --glow-purple: 263 70% 48%;
+    --glow-blue: 217 91% 48%;
   }
 }
 
@@ -343,4 +345,75 @@
 
 .ambient-orb {
   animation: ambient-glow 4s ease-in-out infinite;
+}
+
+/* ============================================================
+   Light mode polish
+   The theme inverts the usual setup: dark is the default,
+   and light mode is enabled by the `.light` class on <html>.
+   These rules refine surfaces and glows so light mode looks
+   crisp instead of washed out.
+   ============================================================ */
+
+/* Glass cards: crisp white surface with a soft, cool shadow so
+   cards read as elevated layers instead of vanishing into the bg */
+.light .glass-card:not(:hover) {
+  background: hsl(var(--card) / 0.85);
+  border-color: hsl(var(--border) / 0.7);
+  box-shadow:
+    0 1px 2px hsl(240 30% 50% / 0.05),
+    0 12px 32px -16px hsl(240 40% 45% / 0.16);
+}
+
+/* Muted glass surfaces (pills, chips) */
+.light .glass {
+  background: hsl(var(--card) / 0.7);
+  border-color: hsl(var(--border) / 0.6);
+}
+
+/* Softer ambient glow behind cards on hover */
+.light .glow-card::before {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.16), hsl(var(--secondary) / 0.16));
+  filter: blur(28px);
+  opacity: 0;
+}
+
+.light .glow-card:hover::before {
+  opacity: 0.55;
+}
+
+/* Gentler pulsing glow so the avatar ring doesn't glare on white */
+@keyframes pulse-glow-light {
+  0%, 100% {
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.18);
+  }
+  50% {
+    box-shadow: 0 0 22px hsl(var(--primary) / 0.28), 0 0 34px hsl(var(--secondary) / 0.12);
+  }
+}
+
+.light .animate-pulse-glow {
+  animation-name: pulse-glow-light;
+}
+
+/* Subtle depth for gradient text instead of a dark glow */
+.light .text-glow {
+  text-shadow: 0 1px 24px hsl(var(--primary) / 0.2);
+}
+
+/* Toned-down colored shadows on light backgrounds */
+.light .glow-purple {
+  box-shadow: 0 0 24px -10px hsl(var(--primary) / 0.28);
+}
+
+.light .glow-blue {
+  box-shadow: 0 0 24px -10px hsl(var(--secondary) / 0.28);
+}
+
+.light .btn-glow {
+  box-shadow: 0 0 16px hsl(var(--primary) / 0.2);
+}
+
+.light .btn-glow:hover {
+  box-shadow: 0 0 24px hsl(var(--primary) / 0.32), 0 0 40px hsl(var(--secondary) / 0.18);
 }

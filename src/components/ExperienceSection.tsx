@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, Calendar, MapPin, Code, Smartphone, Globe, Database } from "lucide-react";
 import { SectionDivider } from "@/components/SectionDivider";
@@ -29,9 +30,11 @@ const floatingIcons = [
 
 export const ExperienceSection = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
+  const animKey = useRef(0);
+  useEffect(() => { if (inView) animKey.current += 1; }, [inView]);
 
   return (
     <section id="experience" className="py-24 relative overflow-hidden">
@@ -40,28 +43,33 @@ export const ExperienceSection = () => {
       <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-[80px]" />
 
       <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={animKey.current}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             My professional journey and internship experiences
-          </p>
-        </motion.div>
+          </p>           </motion.div>
+         </AnimatePresence>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Timeline */}
           <div className="max-w-xl">
             {experiences.map((exp, index) => (
+              <AnimatePresence key={exp.company} mode="wait">
               <motion.div
-                key={exp.company}
+                key={`${animKey.current}-${exp.company}`}
                 initial={{ opacity: 0, x: -50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="relative pl-8 pb-12 last:pb-0"
               >
@@ -108,13 +116,17 @@ export const ExperienceSection = () => {
                   </div>
                 </div>
               </motion.div>
+              </AnimatePresence>
             ))}
           </div>
 
           {/* Right Side - Professional Animation */}
+          <AnimatePresence mode="wait">
           <motion.div
+            key={`right-${animKey.current}`}
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hidden lg:flex items-center justify-center relative"
           >
@@ -197,8 +209,7 @@ export const ExperienceSection = () => {
                       right: i % 2 === 1 ? "-6px" : "auto",
                       transform: "translateY(-50%)"
                     }}
-                  />
-                </motion.div>
+                  />                 </motion.div>
               ))}
 
               {/* Connecting lines */}
@@ -232,6 +243,7 @@ export const ExperienceSection = () => {
               </svg>
             </div>
           </motion.div>
+          </AnimatePresence>
         </div>
 
         <SectionDivider />
